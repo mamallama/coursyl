@@ -14,3 +14,16 @@
 //= require jquery_ujs
 //= require d3
 //= require_tree .
+function updateCourse() {
+  var el = document.getElementsByClassName("btn")[6];
+  el.disabled = true;
+}
+
+// function hideLast() {
+//   var invisLast = document.getElementsByClassName("row").hideLast;
+//   invisLast. = true
+// }
+function showhiderow() {
+  var invisLast = document.getElementsByClassName("row")
+  invisLast[invisLast.length-1].style.display = 'none'
+}
