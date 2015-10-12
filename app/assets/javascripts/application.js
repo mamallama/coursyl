@@ -18,12 +18,27 @@ function updateCourse() {
   var el = document.getElementsByClassName("btn")[6];
   el.disabled = true;
 }
-
 // function hideLast() {
 //   var invisLast = document.getElementsByClassName("row").hideLast;
 //   invisLast. = true
 // }
-function showhiderow() {
+function showHideRow() {
   var invisLast = document.getElementsByClassName("row")
-  invisLast[invisLast.length-1].style.display = 'none'
+  invisLast[invisLast.length-1].style.display = 'none';
+}
+
+function showLastRow() {
+  var invisLast = document.getElementsByClassName("row")
+  invisLast[invisLast.length-1].style.display = 'block';
+}
+
+function showDeleteRow() {
+  var killRow = document.getElementsByClassName("row")
+  killRow.style.display = 'none';
+}
+
+function hideDeleteRow() {
+  var elhide = document.getElementsByClassName("row");
+  elhide.style.display = 'none';
+  document.getElementsByClassName("destroy").checked = true
 }
