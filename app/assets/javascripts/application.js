@@ -18,10 +18,7 @@ function updateCourse() {
   var el = document.getElementsByClassName("btn")[6];
   el.disabled = true;
 }
-// function hideLast() {
-//   var invisLast = document.getElementsByClassName("row").hideLast;
-//   invisLast. = true
-// }
+
 function showHideRow() {
   var invisLast = document.getElementsByClassName("row")
   invisLast[invisLast.length-1].style.display = 'none';
