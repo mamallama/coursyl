@@ -34,43 +34,167 @@ function showDeleteRow() {
   killRow.style.display = 'none';
 }
 
-function hideDeleteRow() {
-  var elhide = document.getElementsByClassName("row");
-  elhide.style.display = 'none';
-  document.getElementsByClassName("destroy").checked = true
+function hideDeleteRow(){
+  var hideRow = event.target.parentElement.parentElement.parentElement;
+  var markDestroy = event.target.parentElement.lastElementChild;
+  hideRow.style.display = "none";
+  markDestroy.checked = true;
 }
+// function hideDeleteRow() {
+//   var elhide = document.getElementsByClassName("row");
+//   elhide.style.display = 'none';
+//   document.getElementsByClassName("destroy").checked = true
+// // }
 
-function delay(){
-  window.setTimeout(disableButton, 500)
-}
 
-document.addEventListener("DOMContentLoaded", function() {
-  "use strict"
-
-  var links = document.querySelectorAll("a.scroll")
-  var i = links.length
-  var root = /firefox|trident/i.test(navigator.userAgent) ? document.documentElement : document.body
-  var easeInOutCubic = function(t, b, c, d) {
-    if ((t/=d/2) < 1) return c/2*t*t*t + b
-    return c/2*((t-=2)*t*t + 2) + b
-  }
-
-  while (i--)
-    links.item(i).addEventListener("click", function(e) {
-      var startTime
-      var startPos = root.scrollTop
-      var endPos = document.getElementById(/[^#]+$/.exec(this.href)[0]).getBoundingClientRect().top
-      var maxScroll = root.scrollHeight - window.innerHeight
-      var scrollEndValue = startPos + endPos < maxScroll ? endPos : maxScroll - startPos
-      var duration = 900
-      var scroll = function(timestamp) {
-        startTime = startTime || timestamp
-        var elapsed = timestamp - startTime
-        var progress = easeInOutCubic(elapsed, startPos, scrollEndValue, duration)
-        root.scrollTop = progress
-        elapsed < duration && requestAnimationFrame(scroll)
+//****************************
+//working JQuery
+$(function() {
+  $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
       }
-      requestAnimationFrame(scroll)
-      e.preventDefault()
-    })
-})
+    }
+  });
+});
+//****************************
+
+
+/////////////////////////////////////////////////////
+// danai's code (doesnt work)
+// (function smoothscroll() {
+//
+// // Scroll Variables (tweakable)
+// var defaultOptions = {
+//
+//     // Scrolling Core
+//     frameRate        : 150, // [Hz]
+//     animationTime    : 400, // [px]
+//     stepSize         : 120, // [px]
+//
+//     // Pulse (less tweakable)
+//     // ratio of "tail" to "acceleration"
+//     pulseAlgorithm   : true,
+//     pulseScale       : 4,
+//     pulseNormalize   : 1,
+//
+//     // Acceleration
+//     accelerationDelta : 20,  // 20
+//     accelerationMax   : 1,   // 1
+//
+//     // Keyboard Settings
+//     keyboardSupport   : true,  // option
+//     arrowScroll       : 50,     // [px]
+//
+//     // Other
+//     touchpadSupport   : true,
+//     fixedBackground   : true,
+//     excluded          : ''
+// };
+//
+// var options = defaultOptions;
+//
+//
+// // Other Variables
+// var isExcluded = false;
+// var isFrame = false;
+// var direction = { x: 0, y: 0 };
+// var initDone  = false;
+// var root = document.documentElement;
+// var activeElement;
+// var observer;
+// var deltaBuffer = [];
+// var isMac = /^Mac/.test(navigator.platform);
+//
+// var key = { left: 37, up: 38, right: 39, down: 40, spacebar: 32,
+//             pageup: 33, pagedown: 34, end: 35, home: 36 };
+/////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////
+// cruzenunez's code (doesnt work)
+// function currentYPosition() {
+//     if (self.pageYOffset) return self.pageYOffset;
+//     return 0;
+// }
+
+// function elmYPosition(id) {
+//     var elm = document.getElementById(id);
+//     var y = elm.offsetTop;
+//     var node = elm;
+//     while (node.offsetParent && node.offsetParent != document.body) {
+//         node = node.offsetParent;
+//         y += node.offsetTop;
+//     } return y;
+// }
+
+// function smoothScroll(id) {
+//     var startY = currentYPosition();
+//     var stopY = elmYPosition(id);
+//     var distance = stopY > startY ? stopY - startY : startY - stopY;
+//     if (distance < 100) {
+//         scrollTo(0, stopY); return;
+//     }
+//     var speed = Math.round(distance / 100);
+//     if (speed >= 20) speed = 20;
+//     var step = Math.round(distance / 25);
+//     var leapY = stopY > startY ? startY + step : startY - step;
+//     var timer = 0;
+//     if (stopY > startY) {
+//         for ( var i=startY; i<stopY; i+=step ) {
+//             setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+//             leapY += step; if (leapY > stopY) leapY = stopY; timer++;
+//         } return;
+//     }
+//     for ( var i=startY; i>stopY; i-=step ) {
+//         setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+//         leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
+//     }
+//     return false;
+// }
+/////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////
+//Somewhere online
+// function animate(elem,style,unit,from,to,time,prop) {
+//     if( !elem) return;
+//     var start = new Date().getTime(),
+//         timer = setInterval(function() {
+//             var step = Math.min(1,(new Date().getTime()-start)/time);
+//             if (prop) {
+//                 elem[style] = (from+step*(to-from))+unit;
+//             } else {
+//                 elem.style[style] = (from+step*(to-from))+unit;
+//             }
+//             if( step == 1) clearInterval(timer);
+//         },25);
+//     elem.style[style] = from+unit;
+// }
+//
+// window.onload = function () {
+//     var target = document.getElementById("div5");
+//     animate(document.body, "scrollTop", "", 0, target.offsetTop, 2000, true);
+// };
+/////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////
+//Internet somewhere
+// function scrollTo(element, to, duration) {
+//     if (duration < 0) return;
+//     var difference = to - element.scrollTop;
+//     var perTick = difference / duration * 10;
+//
+//     setTimeout(function() {
+//         element.scrollTop = element.scrollTop + perTick;
+//         if (element.scrollTop === to) return;
+//         scrollTo(element, to, duration - 10);
+//     }, 10);
+// }
+/////////////////////////////////////////////////////
