@@ -16,13 +16,12 @@
 //= require_tree .
 
 function updateCourseBtn() {
-  var but1 = document.getElementsByName("commit")[0];
-  but1.disabled = true;
+  document.getElementsByName("commit")[0].disabled = true;
 }
 
 function hideLastRow() {
 document.getElementsByClassName("associations")[0].lastElementChild.style.display = 'none';}
 
 function showLastRow() {
-  document.getElementsByClassName("associations")[4].style.display="block";
+  document.getElementsByClassName("associations")[0].lastElementChild.style.display="block";
 }
