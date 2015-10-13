@@ -14,37 +14,34 @@
 //= require jquery_ujs
 //= require d3
 //= require_tree .
-function updateCourse() {
-  var el = document.getElementsByClassName("btn")[6];
-  el.disabled = true;
+function updateCourse(button) {
+  // button.disabled = true;
+  // button.form.submit();
 }
 
-function showHideRow() {
-  var invisLast = document.getElementsByClassName("row")
-  invisLast[invisLast.length-1].style.display = 'none';
+function hideLastRow() {
+  last = $(".association.container").last()
+  if(last) {
+    last.hide();
+  }
 }
+
+$(hideLastRow);
 
 function showLastRow() {
-  var invisLast = document.getElementsByClassName("row")
-  invisLast[invisLast.length-1].style.display = 'block';
+  $(".association.container").last().show();
 }
 
-function showDeleteRow() {
-  var killRow = document.getElementsByClassName("row")
-  killRow.style.display = 'none';
-}
+$(function (){
+  $(".new-association").on("click", showLastRow);
+});
 
-function hideDeleteRow(){
-  var hideRow = event.target.parentElement.parentElement.parentElement;
-  var markDestroy = event.target.parentElement.lastElementChild;
-  hideRow.style.display = "none";
-  markDestroy.checked = true;
+function hideDeleteRow(button){
+  // var hideRow = button.parentElement.parentElement.parentElement;
+  // var markDestroy = button.parentElement.lastElementChild;
+  // hideRow.style.display = "none";
+  // markDestroy.checked = true;
 }
-// function hideDeleteRow() {
-//   var elhide = document.getElementsByClassName("row");
-//   elhide.style.display = 'none';
-//   document.getElementsByClassName("destroy").checked = true
-// // }
 
 
 //****************************
