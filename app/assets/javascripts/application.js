@@ -20,8 +20,13 @@ function updateCourseBtn() {
 }
 
 function hideLastRow() {
-document.getElementsByClassName("associations")[0].lastElementChild.style.display = 'none';}
+  document.getElementsByClassName("associations")[0].lastElementChild.style.display = 'none';}
 
 function showLastRow() {
   document.getElementsByClassName("associations")[0].lastElementChild.style.display="block";
+}
+
+function deleteRow(o) {
+  o.parentNode.parentNode;
+  o.nextElementSibling.checked = true;
 }
