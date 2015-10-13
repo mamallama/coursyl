@@ -16,17 +16,18 @@
 //= require_tree .
 
 function updateCourseBtn() {
-  document.getElementsByName("commit")[0].disabled = true;
+  var btn1 = document.getElementsByName("commit")[0].disabled = true;
+  window.setTimeout(btn1, 350)
 }
 
 function hideLastRow() {
-  document.getElementsByClassName("associations")[0].lastElementChild.style.display = 'none';}
+  document.getElementsByClassName("associations")[0].lastElementChild.style.display = "none";}
 
 function showLastRow() {
   document.getElementsByClassName("associations")[0].lastElementChild.style.display="block";
 }
 
-function deleteRow(o) {
-  o.parentNode.parentNode;
-  o.nextElementSibling.checked = true;
+function deleteRow() {
+this.parentElement.parentElement.parentElement.style.display = "none";
+this.parentElement.lastElementChild.checked = true;
 }
