@@ -14,11 +14,21 @@
 //= require jquery_ujs
 //= require d3
 //= require_tree .
-function updateCourse(button) {
-  // button.disabled = true;
-  // button.form.submit();
+// function updateCourse(){
+// $(".btn").last().attr("disabled", true);
+// }
+
+// SUBMIT BUTTON DISABLES ON CLICK
+function updateCourse(){
+  $(".btn").last().attr("disabled", true)
+  $(".edit_course").submit();
 }
 
+$(function () {
+  $(".btn").last().on("click", updateCourse);
+})
+
+// LAST ROW HIDES
 function hideLastRow() {
   last = $(".association.container").last()
   if(last) {
@@ -28,6 +38,7 @@ function hideLastRow() {
 
 $(hideLastRow);
 
+// SHOWS LAST ROW ON ADD GRADE CLICK
 function showLastRow() {
   $(".association.container").last().show();
 }
@@ -36,12 +47,26 @@ $(function (){
   $(".new-association").on("click", showLastRow);
 });
 
-function hideDeleteRow(button){
-  // var hideRow = button.parentElement.parentElement.parentElement;
-  // var markDestroy = button.parentElement.lastElementChild;
-  // hideRow.style.display = "none";
-  // markDestroy.checked = true;
+// DELETE ROW
+
+function hideDeleteRow() {
+    $(event.target).closest(".association.container").hide();
+    $(event.target).siblings().last().prop("checked", true);
 }
+
+function clickDelete () {
+  $(".btn-danger").on("click", hideDeleteRow);
+}
+$(clickDelete);
+
+// MODAL
+function topModal() {
+  $('#super_modal').modal('show')
+}
+
+$(function(){
+  $(".fa.fa-calendar").on("click", topModal)
+})
 
 
 //****************************
@@ -62,7 +87,31 @@ $(function() {
 });
 //****************************
 
+function datePicker() {
+  var nowTemp = new Date();
+  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
+  var checkin = $('#dpd1').datepicker({
+    onRender: function(date) {
+      return date.valueOf() < now.valueOf() ? 'disabled' : '';
+    }
+  }).on('changeDate', function(ev) {
+    if (ev.date.valueOf() > checkout.date.valueOf()) {
+      var newDate = new Date(ev.date)
+      newDate.setDate(newDate.getDate() + 1);
+      checkout.setValue(newDate);
+    }
+    checkin.hide();
+    $('#dpd2')[0].focus();
+  }).data('datepicker');
+  var checkout = $('#dpd2').datepicker({
+    onRender: function(date) {
+      return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+    }
+  }).on('changeDate', function(ev) {
+    checkout.hide();
+  }).data('datepicker');
+}
 /////////////////////////////////////////////////////
 // danai's code (doesnt work)
 // (function smoothscroll() {

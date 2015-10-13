@@ -15,6 +15,34 @@
       <%= link_to '<i class="fa fa-legal" title="Grade Assignment"></i>'.html_safe, grade_matrix_assignment_path(assignment) %>
     <% end %>
     <%= link_to '<i class="fa fa-bar-chart-o" title="View Grades"></i>'.html_safe, view_grades_assignment_path(assignment) %>
+    <%= link_to '<i class="fa fa-calendar" title="Change Date"></i>'.html_safe, "#" %>
+    <div id="super_modal" class="modal hide fade">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Change Date</h3>
+      </div>
+      <div class="modal-body">
+        <div class="well">
+          <table class="table">
+              <thread>
+                <tr>
+                  <th>
+                    "Activate On: "
+                    <input type="text" class="span2" value="" id="dpd1">
+                  </th>
+                  <th>
+                    "Due On: "
+                    <input type="text" class="span2" value="" id="dpd2">
+                  </th>
+                </tr>
+              </thread>
+            </table>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-primary">Save changes</a>
+      </div>
+    </div>
   <% end %>
   <%= link_to 'Edit', edit_assignment_path(assignment), class: "btn btn-mini" %>
 <% end %>
