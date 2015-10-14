@@ -13,11 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require d3
+//= require jquery.datetimepicker
+//= require jquery.datetimepicker/init
+
 //= require_tree .
 // function updateCourse(){
 // $(".btn").last().attr("disabled", true);
 // }
 
+$('.datetimepicker').datetimepicker();
 // SUBMIT BUTTON DISABLES ON CLICK
 function updateCourse(){
   $(event.target).last().attr("disabled", true)

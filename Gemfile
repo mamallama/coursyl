@@ -33,6 +33,8 @@ gem 'd3-rails'
 gem 'rails-reveal-js'
 gem 'font-awesome-rails'
 
+gem 'jquery-datetimepicker-rails', '~> 2.4.1.0'
+
 gem 'devise'
 
 group :doc do
